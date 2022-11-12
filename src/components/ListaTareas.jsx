@@ -14,6 +14,11 @@ const ListaTareas = () => {
             id: 2,
             nombre: "Ir al destista a las 10am",
             completada: true
+        },
+        {
+            id: 3,
+            nombre: "Comprar tomates",
+            completada: false
         }
     ]);
 
