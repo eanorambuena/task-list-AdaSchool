@@ -1,23 +1,28 @@
+import { useState } from 'react';
+
 import Tarea from "./Tarea";
 
 const ListaTareas = () => {
-    let tareas = [
+
+    const [tareas, setTareas] = useState([
         {
             id: 1,
-            nombre: "Hacer deporte"
+            nombre: "Hacer deporte",
+            completada: false
         },
         {
             id: 2,
-            nombre: "Ir al destista a las 10am"
+            nombre: "Ir al destista a las 10am",
+            completada: true
         }
-    ]
+    ]);
 
     return (
         <div className="container main">
             <ul>
                 {tareas.map((tarea) => {
                     return (
-                        <Tarea key = {tarea.id} nombre = {tarea.nombre}/>
+                        <Tarea key = {tarea.id} nombre = {tarea.nombre} completada = {tarea.completada}/>
                     )
                 })}
             </ul>

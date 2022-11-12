@@ -1,4 +1,4 @@
-const Tarea = ({nombre}) => {
+const Tarea = ({nombre, completada}) => {
     return (
         <li>
             <section className="tarea">
