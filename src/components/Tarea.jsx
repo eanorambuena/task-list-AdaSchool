@@ -24,7 +24,7 @@ const Tarea = ({nombre, completada, descripcion}) => {
 
     return (
         <li>
-            <section className="tarea">
+            <section className = "tarea">
                 <p className="nombre_tarea" style={style}>{nombre}</p>
                 <input className = "checkbox" type="checkbox" checked = {checked} onChange={handleChange}/>
                 <p className="nombre_tarea" style={style}>{descripcion}</p>

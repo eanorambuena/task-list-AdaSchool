@@ -12,7 +12,7 @@ function useTaskList() {
       completed: false
     };
     setTaskList((previousTasks) => [...previousTasks, task]);
-  }, []);
+  }, [setTaskList]);
 
   const toggleTask = useCallback((index) => {
     setTaskList((previousTasks) => [
@@ -23,7 +23,7 @@ function useTaskList() {
       },
       ...previousTasks.slice(index + 1)
     ]);
-  }, []);
+  }, [setTaskList]);
 
   return [taskList, createTask, toggleTask];
 }

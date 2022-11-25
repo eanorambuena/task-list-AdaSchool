@@ -1,18 +1,25 @@
 import './App.css';
-import Header from './components/Header';
-import ListaTareas from './components/ListaTareas';
-import TaskListProvider from './components/TaskListProvider';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Menu from './components/Menu';
+const Home = React.lazy(() => import('./pages/Home'));
+const SobreNosotros = React.lazy(() => import('./pages/SobreNosotros'));
+const Tareas = React.lazy(() => import('./pages/Tareas'));
 
 function App() {
+  const loadingElement = <div>Cargando...</div>
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header></Header>
-      </header>
-      <TaskListProvider>
-        <ListaTareas></ListaTareas>
-      </TaskListProvider>
-    </div>
+    <Router>
+      <Menu></Menu>
+      <Routes>
+        <Route path="/" element={
+          <Suspense fallback={loadingElement}><Home /></Suspense>} />
+        <Route path = "/sobre-nosotros" element={
+          <Suspense fallback={loadingElement}><SobreNosotros /></Suspense>} />
+        <Route path = "/tareas" element={
+          <Suspense fallback={loadingElement}><Tareas /></Suspense>} />
+      </Routes>
+    </Router>
   );
 }
 
