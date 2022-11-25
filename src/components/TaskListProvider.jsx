@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const taskListContext = React.createContext();
 const taskListToggleContext = React.createContext();
@@ -12,7 +13,7 @@ export function useTaskListToggleContext() {
 }
 
 function TaskListProvider({children}) {
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useLocalStorage("taskList", []);
 
   return (
     <taskListContext.Provider value = {taskList}>
