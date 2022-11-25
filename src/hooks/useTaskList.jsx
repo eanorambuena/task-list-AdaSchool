@@ -5,9 +5,10 @@ function useTaskList() {
   const taskList = useTaskListContext();
   const setTaskList = useTaskListToggleContext();
 
-  const createTask = useCallback((name) => {
+  const createTask = useCallback((name, description = "") => {
     const task = {
       name,
+      description,
       completed: false
     };
     setTaskList((previousTasks) => [...previousTasks, task]);

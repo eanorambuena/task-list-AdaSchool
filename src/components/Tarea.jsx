@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-
-const Tarea = ({nombre, completada}) => {
+const Tarea = ({nombre, completada, descripcion}) => {
     const [completadaActual, setCompletadaActual] = useState(completada)
     
     let checked = false;
@@ -28,6 +27,7 @@ const Tarea = ({nombre, completada}) => {
             <section className="tarea">
                 <p className="nombre_tarea" style={style}>{nombre}</p>
                 <input className = "checkbox" type="checkbox" checked = {checked} onChange={handleChange}/>
+                <p className="nombre_tarea" style={style}>{descripcion}</p>
                 <i></i>
             </section>
         </li>
