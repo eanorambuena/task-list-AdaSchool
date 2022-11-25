@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import ListaTareas from './components/ListaTareas';
+import TaskListProvider from './components/TaskListProvider';
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
       <header className="App-header">
         <Header></Header>
       </header>
-      <ListaTareas></ListaTareas>
+      <TaskListProvider>
+        <ListaTareas></ListaTareas>
+      </TaskListProvider>
     </div>
   );
 }
