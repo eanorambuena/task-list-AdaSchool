@@ -2,12 +2,16 @@ import { useCallback } from 'react';
 import { useForm } from "react-hook-form";
 import { ChakraProvider, Input, Divider, Textarea } from '@chakra-ui/react';
 
-
-import useTaskList from "../hooks/useTaskList";
+import useFirebase from '../hooks/useFirebase';
 import Tarea from "./Tarea";
 
 const ListaTareas = () => {
-    const [taskList, setTaskName, toggle] = useTaskList();
+    const [taskList, addItem, deleteItem, editItem] = useFirebase("tareas");
+    const setTaskName = useCallback(
+        (name, description) => {
+            addItem({name, description, completed: false});
+        }, []);
+
     const { register, handleSubmit } = useForm();
 
     const onSubmit = useCallback(
@@ -18,17 +22,7 @@ const ListaTareas = () => {
         },
         [setTaskName]
       );
-    
-    const handleToggleTask = useCallback(
-    (event) => {
-        const {
-        target: { name }
-        } = event;
-        toggle(Number(name));
-    },
-    [toggle]
-    );
-    
+
     return (
         <ChakraProvider>
             <div className="container main">
@@ -42,9 +36,9 @@ const ListaTareas = () => {
                 </form>
                 <Divider borderColor="#282c34" mt={3} mb={3}/>
                 <ul>
-                    {taskList.map(({ name, completed, description }, index) => (
-                        <Tarea key = {index} taskKey = {index} nombre = {name} descripcion = {description}
-                            completada = {completed} toggleHandler = {handleToggleTask}/>
+                    {taskList.map(({ id, name, completed, description }, index) => (
+                        <Tarea key = {index} taskKey = {id} nombre = {name} descripcion = {description}
+                            completada = {completed}/>
                     ))}
                 </ul>
             </div>

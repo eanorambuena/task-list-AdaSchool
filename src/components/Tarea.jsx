@@ -1,34 +1,39 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ChakraProvider, Grid, Checkbox, Heading, Button } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
-import useEditTask from "../hooks/useEditTask";
-import useDeleteTask from "../hooks/useDeleteTask";
+import useFirebase from '../hooks/useFirebase';
 
 const Tarea = ({taskKey, nombre, completada, descripcion}) => {
     const [completadaActual, setCompletadaActual] = useState(completada)
-    
-    let checked = false;
+    const [storedTaskList, addItem, deleteItem, editItem] = useFirebase("tareas");
+
     let style = {textDecoration: "none"};
     if (completadaActual){
         style = {textDecoration: "line-through"};
-        checked = true;
     }
+    let checked = completadaActual;
 
     const handleChange = () => {
         setCompletadaActual(!completadaActual);
         if (completadaActual){
             style = {textDecoration: "line-through"};
-            checked = true;
         }
         else {
             style = {textDecoration: "none"};
-            checked = false;
         }
+        checked = completadaActual;
+        editItem(taskKey, {completed: !completadaActual});
     };
 
-    const editTaskToggle = useEditTask();
-    const deleteTaskToggle = useDeleteTask();
+    const editTaskToggle = useCallback(
+        (index, name, description) => {
+            editItem(index, {name, description, completed: false});
+        }, [editItem]);
+    const deleteTaskToggle = useCallback(
+        (index) => {
+            deleteItem(index);
+        }, [deleteItem]);
 
     const editTask = () => {
         let newTaskName = prompt("Ingrese el nuevo nombre de la tarea");
@@ -47,7 +52,7 @@ const Tarea = ({taskKey, nombre, completada, descripcion}) => {
                     p={5} pr={0} shadow="md" borderWidth="1px" borderRadius="md"
                     backgroundColor="#282c34" color="whitesmoke">
                     <Heading as="h2" size="md" style={style}>{nombre}</Heading>
-                    <Checkbox w={6} h={6} checked = {checked} onChange={handleChange}/>
+                    <Checkbox w={6} h={6} isChecked = {checked} onChange={handleChange}/>
                     <p className="nombre_tarea" style={style}>{descripcion}</p>
                     
                     <Button variant="ghost" maxW={5} h={5}

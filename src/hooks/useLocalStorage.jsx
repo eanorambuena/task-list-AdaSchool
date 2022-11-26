@@ -1,4 +1,4 @@
-// Autor: MiduDev https://www.youtube.com/watch?v=uutiLsX5kFE
+// BAsado en el hook de MiduDev https://www.youtube.com/watch?v=uutiLsX5kFE
 
 import { useState } from 'react'
 
