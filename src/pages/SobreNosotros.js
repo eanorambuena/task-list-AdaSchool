@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { OrderedList as Ol } from '@chakra-ui/react'
+
 const SobreNosotros = () => {
   return (
     <>
@@ -12,12 +14,12 @@ const SobreNosotros = () => {
               <li> Está desarrollada usando React, React Routes, React Hooks Forms, Chakra UI y Chakra UI Icons</li>
             </ul>
             <h2 className = "App-subheader container">Funcionalidades</h2>
-            <ol>
+            <Ol mt={10}>
                 <li>Crear una lista de tareas</li>
                 <li>Marcar una tarea como completada o pendiente</li>
                 <li>Eliminar una tarea</li>
                 <li>Editar una tarea</li>
-            </ol>
+            </Ol>
         </section>
     </>
   )

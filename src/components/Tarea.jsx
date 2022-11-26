@@ -3,10 +3,12 @@ import { ChakraProvider, Grid, Checkbox, Heading, Button } from '@chakra-ui/reac
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 
 import useFirebase from '../hooks/useFirebase';
+import useUser from '../hooks/useUser';
 
 const Tarea = ({taskKey, nombre, completada, descripcion}) => {
     const [completadaActual, setCompletadaActual] = useState(completada)
-    const [storedTaskList, addItem, deleteItem, editItem] = useFirebase("tareas");
+    const { deleteItem, editItem }  = useFirebase("tareas");
+    const { user } = useUser();
 
     let style = {textDecoration: "none"};
     if (completadaActual){
@@ -28,7 +30,7 @@ const Tarea = ({taskKey, nombre, completada, descripcion}) => {
 
     const editTaskToggle = useCallback(
         (index, name, description) => {
-            editItem(index, {name, description, completed: false});
+            editItem(index, {name, description, username: user.name, completed: false});
         }, [editItem]);
     const deleteTaskToggle = useCallback(
         (index) => {

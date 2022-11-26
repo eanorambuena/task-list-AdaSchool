@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import ListaTareas from '../components/ListaTareas';
-import TaskListProvider from '../components/TaskListProvider';
+import TaskListProvider from '../providers/TaskListProvider';
 
 const Tareas = () => {
   return (

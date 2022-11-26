@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import db from '../firebaseConfig';
+import { db } from '../firebaseConfig';
 
 function useFirebase(collectionId) {
     const [storedList, setStoredList] = useState([]);
@@ -42,7 +42,7 @@ function useFirebase(collectionId) {
         }
     }
 
-    return [storedList, addItem, deleteItem, editItem];
+    return { storedList, addItem, deleteItem, editItem };
 }
 
 export default useFirebase;

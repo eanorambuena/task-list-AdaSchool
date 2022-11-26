@@ -4,13 +4,16 @@ import { ChakraProvider, Input, Divider, Textarea } from '@chakra-ui/react';
 
 import useFirebase from '../hooks/useFirebase';
 import Tarea from "./Tarea";
+import useUser from '../hooks/useUser';
 
 const ListaTareas = () => {
-    const [taskList, addItem, deleteItem, editItem] = useFirebase("tareas");
+    const { storedList, addItem } = useFirebase("tareas");
+    const { user } = useUser();
+
     const setTaskName = useCallback(
         (name, description) => {
-            addItem({name, description, completed: false});
-        }, [addItem]);
+            addItem({name, description, username: user.name, completed: false});
+        }, [addItem, user.name]);
 
     const { register, handleSubmit } = useForm();
 
@@ -22,6 +25,8 @@ const ListaTareas = () => {
         },
         [setTaskName]
       );
+
+    const taskList = storedList.filter(task => task.username === user.name);
 
     return (
         <ChakraProvider>
