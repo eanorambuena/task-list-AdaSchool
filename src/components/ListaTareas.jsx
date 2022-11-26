@@ -31,7 +31,7 @@ const ListaTareas = () => {
                         placeholder="Nombre de la tarea" mb={3}/>
                     <Textarea {...register("taskDescription")} borderColor="#282c34"
                         placeholder="Descripción de la tarea" mb={3}/>
-                    <Input type="submit" value="Setear tarea" variant="solid"
+                    <Input type="submit" value="Añadir tarea" variant="solid"
                         backgroundColor="#282c34" color="whitesmoke" mb={3}/>
                 </form>
                 <Divider borderColor="#282c34" mt={3} mb={3}/>
