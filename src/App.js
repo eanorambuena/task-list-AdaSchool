@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import Menu from './components/Menu';
 import Protected from './components/Protected';
@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Menu></Menu>
       <Routes>
-        <Route path="/" element={
+        <Route path="/" exact element={
           <Suspense fallback={loadingElement}><Home /></Suspense>} />
         <Route path = "/sobre-nosotros" element={
           <Suspense fallback={loadingElement}><SobreNosotros /></Suspense>} />
@@ -26,6 +26,7 @@ function App() {
             </Suspense>
           }/>
         }/>
+        <Route path="*" element={<Navigate to="/"/>} />
       </Routes>
     </Router>
   );
