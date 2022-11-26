@@ -11,7 +11,7 @@ const SobreNosotros = () => {
         <section className  = "container">
             <ul className  = "container">
               <li> Lista de Tareas es una aplicación web que permite crear una lista de tareas y marcarlas como completadas o pendientes. </li>
-              <li> Está desarrollada usando React, React Routes, React Hooks Forms, Chakra UI y Chakra UI Icons</li>
+              <li> Está desarrollada usando React, React Routes, React Forms, Chakra UI, Chakra UI Icons y Firebase</li>
             </ul>
             <h2 className = "App-subheader container">Funcionalidades</h2>
             <Ol mt={10}>
