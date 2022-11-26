@@ -17,8 +17,9 @@ function useLocalStorage(key, initialValue) {
 
     const setValue = (value) => {
         try {
-            setStoredValue(value);
-            window.localStorage.setItem(key, JSON.stringify(value));
+            const newValue = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(newValue);
+            window.localStorage.setItem(key, JSON.stringify(newValue));
         }
         catch (error) {
             console.error(error);

@@ -43,7 +43,7 @@ const ListaTareas = () => {
                 <Divider borderColor="#282c34" mt={3} mb={3}/>
                 <ul>
                     {taskList.map(({ name, completed, description }, index) => (
-                        <Tarea key = {index} nombre = {name} descripcion = {description}
+                        <Tarea key = {index} taskKey = {index} nombre = {name} descripcion = {description}
                             completada = {completed} toggleHandler = {handleToggleTask}/>
                     ))}
                 </ul>
@@ -51,5 +51,5 @@ const ListaTareas = () => {
         </ChakraProvider>
     );
 }
- 
+
 export default ListaTareas;
