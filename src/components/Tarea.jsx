@@ -31,7 +31,7 @@ const Tarea = ({taskKey, nombre, completada, descripcion}) => {
     const editTaskToggle = useCallback(
         (index, name, description) => {
             editItem(index, {name, description, username: user.name, completed: false});
-        }, [editItem]);
+        }, [editItem, user.name]);
     const deleteTaskToggle = useCallback(
         (index) => {
             deleteItem(index);
