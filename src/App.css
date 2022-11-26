@@ -78,6 +78,6 @@ nav {
   box-shadow: 1px 1px 10px 5px #282c3436;
   border-radius: 5px;
   align-items: center;
-  width: 50%;
+  width: fit-content;
   height: 100%;
 }
