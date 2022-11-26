@@ -44,6 +44,16 @@ const Home = () => {
                             backgroundColor="#282c34" onClick={handleGoogleLogin}>
                             {user.name ? "Iniciar Sesión con otra cuenta de Google":"Iniciar Sesión con Google"}
                         </Button>
+                        {user.name && (
+                            <Button colorScheme="teal" variant="outline" size="lg"
+                                borderColor="#282c34" onClick={() => {
+                                    window.localStorage.removeItem("user");
+                                    setUser({});
+                                }}>
+                                Cerrar sesión
+                            </Button>
+                        )}
+                        
                     </div>
                     {
                         errorMessage && (

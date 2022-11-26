@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useForm } from "react-hook-form";
-import { ChakraProvider, Input, Divider, Textarea } from '@chakra-ui/react';
+import { ChakraProvider, Input, Divider, Textarea, Heading } from '@chakra-ui/react';
 
 import useFirebase from '../hooks/useFirebase';
 import Tarea from "./Tarea";
@@ -40,12 +40,17 @@ const ListaTareas = () => {
                         backgroundColor="#282c34" color="whitesmoke" mb={3}/>
                 </form>
                 <Divider borderColor="#282c34" mt={3} mb={3}/>
-                <ul>
-                    {taskList.map(({ id, name, completed, description }, index) => (
-                        <Tarea key = {index} taskKey = {id} nombre = {name} descripcion = {description}
-                            completada = {completed}/>
-                    ))}
-                </ul>
+                {taskList.length === 0 ? <Heading as="h4" fontSize="md" textAlign="center">No has añadido tareas aún.
+Las tareas que añadas se mostrarán aquí.</Heading>
+                    :(
+                    <ul>
+                        {taskList.map(({ id, name, completed, description }, index) => (
+                            <Tarea key = {index} taskKey = {id} nombre = {name} descripcion = {description}
+                                completada = {completed}/>
+                        ))}
+                    </ul>
+                )}
+
             </div>
         </ChakraProvider>
     );
