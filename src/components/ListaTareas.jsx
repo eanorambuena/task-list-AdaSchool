@@ -10,7 +10,7 @@ const ListaTareas = () => {
     const setTaskName = useCallback(
         (name, description) => {
             addItem({name, description, completed: false});
-        }, []);
+        }, [addItem]);
 
     const { register, handleSubmit } = useForm();
 
